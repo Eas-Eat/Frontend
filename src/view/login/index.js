@@ -26,8 +26,8 @@ export default function Login({ navigation }) {
 			<KeyboardAvoidingView behavior="padding" enabled style={{ backgroundColor: "#FAFAFA", flex: 1 }}>
 				<ScrollView>
 					<View style={{ marginHorizontal: 32, marginVertical: 64 }}>
-						<Text style={{ color: "#413A6C", fontWeight: "bold", fontSize: 32 }}>Log in to your</Text>
-						<Text style={{ color: "#413A6C", fontWeight: "bold", fontSize: 32 }}>account</Text>
+						<Text style={{ color: "#8080A5", fontWeight: "bold", fontSize: 32 }}>Log in to your</Text>
+						<Text style={{ color: "#8080A5", fontWeight: "bold", fontSize: 32 }}>account</Text>
 					</View>
 
 					<View style={{ display: "flex", flexDirection: "column", marginHorizontal: 32 }}>
@@ -68,17 +68,18 @@ export default function Login({ navigation }) {
 									marginVertical: 8,
 								}}
 								underlayColor="transparent"
+								onPress={() => forgot()}
 							>
 								<View>
-									<Text style={{ color: "#413A6C", fontSize: 14 }}>Forgot{"?"}</Text>
+									<Text style={{ color: "#8080A5", fontSize: 14 }}>Forgot{"?"}</Text>
 								</View>
 							</TouchableOpacity>
 						</View>
 
-						<TouchableOpacity>
+						<TouchableOpacity onPress={() => login()}>
 							<View
 								style={{
-									backgroundColor: "#413A6C",
+									backgroundColor: "#8080A5",
 									alignItems: "center",
 									justifyContent: "center",
 									borderRadius: 50,
@@ -114,7 +115,7 @@ export default function Login({ navigation }) {
 					</Text>
 					<Text
 						style={{
-							color: "#413A6C",
+							color: "#8080A5",
 							fontWeight: "bold",
 							fontSize: 16,
 							width: 80,
