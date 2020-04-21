@@ -8,7 +8,7 @@
 		"eject": "expo eject",
 		"test": "jest",
 		"coverage": "jest --verbose --coverage && open ./coverage/lcov-report/index.html",
-		"lint": "eslint 'src/**/*.js'",
+		"lint": "eslint \"./src/**/*.js\"",
 		"prettier": "prettier --check src/**/*.js"
 	},
 	"jest": {

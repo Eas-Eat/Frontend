@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { styles } from "./styles";
 import { View, KeyboardAvoidingView, TouchableOpacity } from "react-native";
 import { Form, Item, Input, Label, Button, Spinner, Text } from "native-base";
-import useInput from "../../hooks/useInput";
+
+import useInput from "../hooks/useInput";
+import { styles } from "../style/view/forgot";
 
 export default function Forgot({ navigation }) {
 	const [loading, setLoading] = useState(false);
