@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import { View, KeyboardAvoidingView, ScrollView, TouchableOpacity } from "react-native";
-import { Form, Item, Input, Label, Button, Spinner, Text } from "native-base";
+import { View, KeyboardAvoidingView, TextInput, Text, TouchableOpacity, ScrollView } from "react-native";
+import { Spinner } from "native-base";
 
 import useInput from "../hooks/useInput";
-import { styles } from "../style/view/register";
+import styles from "../style/view/register";
 
 export default function Register({ navigation }) {
 	const [loading, setLoading] = useState(false);
-	const nickname = useInput("");
+	const username = useInput("");
 	const email = useInput("");
 	const password = useInput("");
-	const passwordConfirm = useInput("");
 
 	const register = () => {
 		navigation.navigate("Login");
@@ -22,45 +21,40 @@ export default function Register({ navigation }) {
 
 	const render = () => {
 		return (
-			<KeyboardAvoidingView behavior="padding" style={styles.keyboardAvoiding} enabled>
+			<KeyboardAvoidingView behavior="padding" enabled style={styles.keyboardAvoiding}>
 				<ScrollView>
-					<View style={styles.mainContainer}>
-						<Form>
-							<Item floatingLabel style={styles.item}>
-								<Label>Nickname</Label>
-								<Input {...nickname} />
-							</Item>
-							<Item floatingLabel style={styles.item}>
-								<Label>Email</Label>
-								<Input autoCapitalize="none" {...email} />
-							</Item>
-							<Item floatingLabel style={styles.item}>
-								<Label>Password</Label>
-								<Input secureTextEntry={true} autoCapitalize="none" {...password} />
-							</Item>
-							<Item floatingLabel style={styles.item}>
-								<Label>PasswordConfirm</Label>
-								<Input secureTextEntry={true} autoCapitalize="none" {...passwordConfirm} />
-							</Item>
-						</Form>
+					<View style={styles.header}>
+						<Text style={styles.textHeader}>Create your</Text>
+						<Text style={styles.textHeader}>account</Text>
+					</View>
+
+					<View style={styles.form}>
+						<TextInput placeholder="Username" style={styles.input} {...username} />
+						<TextInput placeholder="Email" style={styles.input} {...email} />
+						<TextInput placeholder="Password" style={styles.input} {...password} />
+
 						{!loading ? (
-							<View style={styles.buttonContainer}>
-								<Button title="Connexion" onPress={() => register()} style={styles.button}>
-									<Text style={styles.registerText}>Register</Text>
-								</Button>
-								<TouchableOpacity onPress={() => login()} style={styles.touchableOpacity}>
-									<Text style={styles.formText}>Already have an account ?</Text>
-								</TouchableOpacity>
-							</View>
+							<TouchableOpacity onPress={() => register()}>
+								<View style={styles.signupView}>
+									<Text style={styles.signupText}>Sign up</Text>
+								</View>
+							</TouchableOpacity>
 						) : (
-							<View style={styles.buttonContainer}>
-								<Button style={styles.button}>
+							<TouchableOpacity>
+								<View style={styles.signupView}>
 									<Spinner color="white" size="small" />
-								</Button>
-							</View>
+								</View>
+							</TouchableOpacity>
 						)}
 					</View>
 				</ScrollView>
+
+				<View style={styles.footer}>
+					<Text style={styles.footerText}>Already an account?</Text>
+					<TouchableOpacity onPress={() => login()}>
+						<Text style={styles.footerButton}>Log in</Text>
+					</TouchableOpacity>
+				</View>
 			</KeyboardAvoidingView>
 		);
 	};

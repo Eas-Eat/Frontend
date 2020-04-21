@@ -22,8 +22,8 @@ export default function Login({ navigation }) {
 		navigation.navigate("Forgot");
 	};
 
-	return (
-		<>
+	const render = () => {
+		return (
 			<KeyboardAvoidingView behavior="padding" enabled style={styles.keyboardAvoiding}>
 				<ScrollView>
 					<View style={styles.header}>
@@ -71,6 +71,8 @@ export default function Login({ navigation }) {
 					</TouchableOpacity>
 				</View>
 			</KeyboardAvoidingView>
-		</>
-	);
+		);
+	};
+
+	return render();
 }

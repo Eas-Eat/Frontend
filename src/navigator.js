@@ -2,7 +2,8 @@ import React from "react";
 
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
-
+import { TouchableOpacity } from "react-native";
+import Icon from "react-native-vector-icons/Ionicons";
 import Login from "./view/login";
 import Register from "./view/register";
 import Forgot from "./view/forgot";
