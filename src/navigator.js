@@ -2,12 +2,12 @@ import React from "react";
 
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
-import { TouchableOpacity } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
+
 import Login from "./view/login";
 import Register from "./view/register";
 import Forgot from "./view/forgot";
 import FindIngredient from "./component/findIngredient";
+import Home from "./view/home";
 
 const CreateStack = createStackNavigator(
 	{
@@ -45,9 +45,15 @@ const CreateStack = createStackNavigator(
 				header: null,
 			},
 		},
+		Home: {
+			screen: Home,
+			navigationOptions: {
+				header: null,
+			},
+		},
 	},
 	{
-		initialRouteName: "Login",
+		initialRouteName: "Home",
 	}
 );
 
