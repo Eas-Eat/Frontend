@@ -8,12 +8,8 @@ import styles from "../style/component/findIngredient";
 const findIngredient = () => {
 	const ingredientSearch = useInput("");
 
-	const fetchRecipes = async () => {
-		const res = await request(
-			"GET",
-			"/recipes/findByIngredients",
-			"?number=5&ranking=1&ignorePantry=false&ingredients=apples%252Cflour%252Csugar"
-		);
+	const fetchIngredients = async () => {
+		const res = await request("GET", "food/ingredients/autocomplete", `?number=10&query=${ingredientSearch.value}`);
 		alert(JSON.stringify(res));
 	};
 
@@ -23,7 +19,7 @@ const findIngredient = () => {
 				<View style={styles.mainContainer}>
 					<Text>Search an ingredient: </Text>
 					<TextInput {...ingredientSearch} style={styles.searchInput} />
-					<Button onPress={fetchRecipes} title="Fetch recipes" color="#841584" />
+					<Button onPress={fetchIngredients} title="Fetch ingredients" color="#841584" />
 				</View>
 			</KeyboardAvoidingView>
 		);
