@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { View, KeyboardAvoidingView, TouchableOpacity } from "react-native";
-import { Form, Item, Input, Label, Button, Spinner, Text } from "native-base";
+import { View, KeyboardAvoidingView, TextInput, Text, TouchableOpacity, ScrollView } from "react-native";
+import { Spinner } from "native-base";
 
 import useInput from "../hooks/useInput";
-import { styles } from "../style/view/forgot";
+import styles from "../style/view/forgot";
 
-export default function Forgot({ navigation }) {
+export default function Forgot() {
 	const [loading, setLoading] = useState(false);
 	const email = useInput("");
 
@@ -13,42 +13,35 @@ export default function Forgot({ navigation }) {
 		return null;
 	};
 
-	const login = async () => {
-		navigation.navigate("Login");
+	const render = () => {
+		return (
+			<KeyboardAvoidingView behavior="padding" enabled style={styles.keyboardAvoiding}>
+				<ScrollView>
+					<View style={styles.header}>
+						<Text style={styles.textHeader}>Forgot password</Text>
+					</View>
+
+					<View style={styles.form}>
+						<TextInput placeholder="Email" style={styles.emailText} {...email} />
+
+						{!loading ? (
+							<TouchableOpacity onPress={() => send()}>
+								<View style={styles.forgotView}>
+									<Text style={styles.forgotText}>Send</Text>
+								</View>
+							</TouchableOpacity>
+						) : (
+							<TouchableOpacity>
+								<View style={styles.forgotView}>
+									<Spinner color="white" size="small" />
+								</View>
+							</TouchableOpacity>
+						)}
+					</View>
+				</ScrollView>
+			</KeyboardAvoidingView>
+		);
 	};
 
-	return (
-		<>
-			<KeyboardAvoidingView behavior="padding" style={styles.keyboardAvoiding} enabled>
-				<View style={styles.mainContainer}>
-					{!loading ? (
-						<>
-							<Form>
-								<Item floatingLabel style={styles.item}>
-									<Label>Email</Label>
-									<Input autoCapitalize="none" {...email} />
-								</Item>
-							</Form>
-							<View style={styles.buttonContainer}>
-								<Button title="Connexion" onPress={() => send()} style={styles.button}>
-									<Text style={styles.connectText}>Send Email</Text>
-								</Button>
-							</View>
-						</>
-					) : (
-						<View style={styles.buttonContainer}>
-							<Button style={styles.button}>
-								<Spinner color="white" size="small" />
-							</Button>
-						</View>
-					)}
-				</View>
-			</KeyboardAvoidingView>
-			<View style={styles.formContainer}>
-				<TouchableOpacity onPress={() => login()} style={styles.touchableOpacity}>
-					<Text style={styles.formText}>Login</Text>
-				</TouchableOpacity>
-			</View>
-		</>
-	);
+	return render();
 }
