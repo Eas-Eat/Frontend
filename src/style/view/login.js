@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
-import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
+import { vmin } from "react-native-expo-viewport-units";
 
-const styles = StyleSheet.create({
+export default StyleSheet.create({
 	keyboardAvoiding: {
 		flex: 3,
 		flexDirection: "column",
@@ -50,5 +50,3 @@ const styles = StyleSheet.create({
 		color: "#000",
 	},
 });
-
-export { styles };
