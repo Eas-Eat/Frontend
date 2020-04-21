@@ -1,18 +1,30 @@
 import { StyleSheet } from "react-native";
-import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
+import { vmin } from "react-native-expo-viewport-units";
 
-const styles = StyleSheet.create({
+export default StyleSheet.create({
 	keyboardAvoiding: {
-		flex: 3,
+		flex: 1,
 		flexDirection: "column",
 		paddingTop: Platform.OS === "ios" ? 0 : Expo.Constants.statusBarHeight,
 		alignItems: "center",
 	},
 
 	mainContainer: {
-		justifyContent: "center",
-		alignItems: "center",
 		flex: 1,
+	},
+
+	logoContainer: {
+		flexDirection: "column",
+		alignSelf: "center",
+		width: vmin(60),
+		height: vmin(40),
+		marginBottom: vmin(5),
+	},
+
+	logo: {
+		width: vmin(40),
+		height: vmin(40),
+		alignSelf: "center",
 	},
 
 	item: {
@@ -33,18 +45,12 @@ const styles = StyleSheet.create({
 		width: vmin(100),
 	},
 
-	formContainer: {
-		flex: 1,
-	},
-
 	touchableOpacity: {
 		padding: 2,
 		alignItems: "center",
 	},
 
-	formText: {
-		color: "#000",
+	registerText: {
+		color: "white",
 	},
 });
-
-export { styles };

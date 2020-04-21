@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { styles } from "./styles";
 import { View, KeyboardAvoidingView, TextInput, Text, TouchableOpacity, ScrollView } from "react-native";
 import { Spinner } from "native-base";
 
 import useInput from "../../hooks/useInput";
+import { styles } from "./styles";
 
 export default function Login({ navigation }) {
 	const [loading, setLoading] = useState(false);

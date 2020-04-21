@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-const styles = StyleSheet.create({
+export default StyleSheet.create({
 	keyboardAvoiding: {
 		backgroundColor: "#FAFAFA",
 		flex: 1,
@@ -100,5 +100,3 @@ const styles = StyleSheet.create({
 		width: 80,
 	},
 });
-
-export { styles };
