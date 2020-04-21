@@ -37,7 +37,7 @@ const CreateStack = createStackNavigator(
 		},
 	},
 	{
-		initialRouteName: "FindIngredient",
+		initialRouteName: "Login",
 	}
 );
 
