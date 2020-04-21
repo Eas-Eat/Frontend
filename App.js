@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import RootNavigator from "./src/navigator";
 import SafeAreaView from "react-native-safe-area-view";
+import { Provider as PaperProvider } from "react-native-paper";
 import * as Font from "expo-font";
 
 export default function app() {
@@ -20,9 +21,11 @@ export default function app() {
 
 	const render = () => {
 		return loading ? null : (
-			<SafeAreaView style={{ flex: 1, backgroundColor: "#191919" }} forceInset={{ top: "always" }}>
-				<RootNavigator />
-			</SafeAreaView>
+			<PaperProvider>
+				<SafeAreaView style={{ flex: 1, backgroundColor: "#191919" }} forceInset={{ top: "always" }}>
+					<RootNavigator />
+				</SafeAreaView>
+			</PaperProvider>
 		);
 	};
 

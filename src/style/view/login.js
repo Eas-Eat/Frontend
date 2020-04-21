@@ -1,52 +1,102 @@
 import { StyleSheet } from "react-native";
-import { vmin } from "react-native-expo-viewport-units";
 
 export default StyleSheet.create({
 	keyboardAvoiding: {
-		flex: 3,
-		flexDirection: "column",
+		backgroundColor: "#FAFAFA",
+		flex: 1,
 		paddingTop: Platform.OS === "ios" ? 0 : Expo.Constants.statusBarHeight,
-		alignItems: "center",
 	},
 
-	mainContainer: {
-		justifyContent: "center",
-		alignItems: "center",
+	header: {
+		marginHorizontal: 32,
+		marginVertical: 64,
+	},
+
+	textHeader: {
+		color: "#8080A5",
+		fontWeight: "bold",
+		fontSize: 32,
+	},
+
+	form: {
+		display: "flex",
+		flexDirection: "column",
+		marginHorizontal: 32,
+	},
+
+	formPassword: {
+		display: "flex",
+		flexDirection: "row",
+	},
+
+	emailText: {
+		marginVertical: 8,
+		borderRadius: 50,
+		height: 48,
+		backgroundColor: "white",
+		paddingLeft: 24,
+	},
+
+	passwordText: {
+		marginVertical: 8,
+		borderTopLeftRadius: 50,
+		borderBottomLeftRadius: 50,
+		height: 48,
+		backgroundColor: "white",
+		paddingLeft: 24,
+	},
+
+	forgotTouchable: {
 		flex: 1,
-	},
-
-	item: {
-		width: "60%",
-		alignSelf: "center",
-	},
-
-	button: {
-		backgroundColor: "#000",
-		width: vmin(60),
+		alignItems: "center",
 		justifyContent: "center",
-		alignSelf: "center",
+		borderTopRightRadius: 50,
+		borderBottomRightRadius: 50,
+		backgroundColor: "white",
+		height: 48,
+		marginVertical: 8,
 	},
 
-	buttonContainer: {
-		marginTop: 36,
+	forgotText: {
+		color: "#8080A5",
+		fontSize: 14,
+	},
+
+	loginView: {
+		backgroundColor: "#8080A5",
+		alignItems: "center",
 		justifyContent: "center",
-		width: vmin(100),
+		borderRadius: 50,
+		marginVertical: 8,
+		height: 48,
 	},
 
-	connectText: {
+	loginText: {
 		color: "white",
+		fontSize: 18,
+		fontWeight: "800",
 	},
 
-	formContainer: {
-		flex: 1,
-	},
-
-	touchableOpacity: {
-		padding: 2,
+	footer: {
+		marginHorizontal: 32,
+		marginBottom: 16,
+		flexDirection: "row",
 		alignItems: "center",
+		justifyContent: "center",
+		flex: 0.1,
 	},
 
-	formText: {
-		color: "#000",
+	footerText: {
+		fontWeight: "500",
+		fontSize: 16,
+		width: 200,
+		textAlign: "center",
+	},
+
+	footerButton: {
+		color: "#8080A5",
+		fontWeight: "bold",
+		fontSize: 16,
+		width: 80,
 	},
 });

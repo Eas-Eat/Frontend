@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { View, KeyboardAvoidingView, TouchableOpacity } from "react-native";
-import { Form, Item, Input, Label, Button, Spinner, Text } from "native-base";
+import { View, KeyboardAvoidingView, TextInput, Text, TouchableOpacity, ScrollView } from "react-native";
+import { Spinner } from "native-base";
 
-import useInput from "../hooks/useInput";
-import { styles } from "../style/view/login";
+import useInput from "../../hooks/useInput";
+import { styles } from "./styles";
 
 export default function Login({ navigation }) {
 	const [loading, setLoading] = useState(false);
@@ -24,43 +24,53 @@ export default function Login({ navigation }) {
 
 	return (
 		<>
-			<KeyboardAvoidingView behavior="padding" style={styles.keyboardAvoiding} enabled>
-				<View style={styles.mainContainer}>
-					{!loading ? (
-						<>
-							<Form>
-								<Item floatingLabel style={styles.item}>
-									<Label>Email / Pseudo</Label>
-									<Input autoCapitalize="none" {...email} />
-								</Item>
-								<Item floatingLabel style={styles.item}>
-									<Label>Password</Label>
-									<Input secureTextEntry={true} {...password} autoCapitalize="none" />
-								</Item>
-							</Form>
-							<View style={styles.buttonContainer}>
-								<Button title="Connexion" onPress={() => login()} style={styles.button}>
-									<Text style={styles.connectText}>Sign In</Text>
-								</Button>
+			<KeyboardAvoidingView behavior="padding" enabled style={styles.keyboardAvoiding}>
+				<ScrollView>
+					<View style={styles.header}>
+						<Text style={styles.textHeader}>Log in to your</Text>
+						<Text style={styles.textHeader}>account</Text>
+					</View>
+
+					<View style={styles.form}>
+						<TextInput placeholder="Email" style={styles.emailText} {...email} />
+
+						<View style={styles.formPassword}>
+							<View style={{ flex: 4 }}>
+								<TextInput placeholder="Password" style={styles.passwordText} {...password} />
 							</View>
-						</>
-					) : (
-						<View style={styles.buttonContainer}>
-							<Button style={styles.button}>
-								<Spinner color="white" size="small" />
-							</Button>
+							<TouchableOpacity
+								style={styles.forgotTouchable}
+								underlayColor="transparent"
+								onPress={() => forgot()}
+							>
+								<View>
+									<Text style={styles.forgotText}>Forgot{"?"}</Text>
+								</View>
+							</TouchableOpacity>
 						</View>
-					)}
+						{!loading ? (
+							<TouchableOpacity onPress={() => login()}>
+								<View style={styles.loginView}>
+									<Text style={styles.loginText}>Log in</Text>
+								</View>
+							</TouchableOpacity>
+						) : (
+							<TouchableOpacity>
+								<View style={styles.loginView}>
+									<Spinner color="white" size="small" />
+								</View>
+							</TouchableOpacity>
+						)}
+					</View>
+				</ScrollView>
+
+				<View style={styles.footer}>
+					<Text style={styles.footerText}>Don't have an account?</Text>
+					<TouchableOpacity onPress={() => register()}>
+						<Text style={styles.footerButton}>Sign up</Text>
+					</TouchableOpacity>
 				</View>
 			</KeyboardAvoidingView>
-			<View style={styles.formContainer}>
-				<TouchableOpacity onPress={() => register()} style={styles.touchableOpacity}>
-					<Text style={styles.formText}>Create an account here</Text>
-				</TouchableOpacity>
-				<TouchableOpacity onPress={() => forgot()} style={styles.touchableOpacity}>
-					<Text style={styles.formText}>Forgot password ?</Text>
-				</TouchableOpacity>
-			</View>
 		</>
 	);
 }
