@@ -26,7 +26,16 @@ const CreateStack = createStackNavigator(
 		Forgot: {
 			screen: Forgot,
 			navigationOptions: {
-				header: null,
+				headerForceInset: { top: "never", bottom: "never" },
+				headerStyle: {
+					backgroundColor: "#FAFAFA",
+					shadowOpacity: 0,
+					shadowOffset: {
+						height: 0,
+					},
+					shadowRadius: 0,
+					elevation: 0,
+				},
 			},
 		},
 		// This component is a test, remove it in release
