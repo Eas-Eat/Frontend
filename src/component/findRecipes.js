@@ -5,14 +5,14 @@ import useInput from "../hooks/useInput";
 import request from "../services/fetch";
 import styles from "../style/component/findIngredient";
 
-const findIngredient = () => {
-	const ingredientSearch = useInput("");
+const findRecipes = () => {
+	const recipeSearch = useInput("");
 
 	const fetchRecipes = async () => {
 		const res = await request(
 			"GET",
 			"/recipes/findByIngredients",
-			`?number=5&ranking=1&ignorePantry=false&ingredients=${ingredientSearch.value}`
+			`?number=5&ranking=1&ignorePantry=false&ingredients=${recipeSearch.value}`
 		);
 		alert(JSON.stringify(res));
 	};
@@ -22,7 +22,7 @@ const findIngredient = () => {
 			<KeyboardAvoidingView behavior="padding" style={styles.keyboardAvoiding} enabled>
 				<View style={styles.mainContainer}>
 					<Text>What do you have? </Text>
-					<TextInput {...ingredientSearch} style={styles.searchInput} />
+					<TextInput {...recipeSearch} style={styles.searchInput} />
 					<Button onPress={fetchRecipes} title="Find recipes" color="#841584" />
 				</View>
 			</KeyboardAvoidingView>
@@ -32,4 +32,4 @@ const findIngredient = () => {
 	return render();
 };
 
-export default findIngredient;
+export default findRecipes;
