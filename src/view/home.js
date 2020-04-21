@@ -21,13 +21,39 @@ export default function Home() {
 					</View>
 					<View style={styles.menuButtonContainer}>
 						<TouchableOpacity style={styles.menuTouchableOpacity} onPress={() => setStep(1)}>
-							<Text style={step == 1 ? styles.menuTextSelected : styles.menuText}>Proposal</Text>
+							<View style={styles.menuViewText}>
+								<Text style={step == 1 ? styles.menuTextSelected : styles.menuText}>Proposal</Text>
+								{step == 1 ? (
+									<>
+										<View style={styles.menuPearl}></View>
+										<View style={styles.menuNotch}></View>
+									</>
+								) : null}
+							</View>
 						</TouchableOpacity>
 						<TouchableOpacity style={styles.menuTouchableOpacity} onPress={() => setStep(2)}>
-							<Text style={step == 2 ? styles.menuTextSelected : styles.menuText}>My Ingredients</Text>
+							<View style={styles.menuViewText}>
+								<Text style={step == 2 ? styles.menuTextSelected : styles.menuText}>
+									My Ingredients
+								</Text>
+								{step == 2 ? (
+									<>
+										<View style={styles.menuPearl}></View>
+										<View style={styles.menuNotch}></View>
+									</>
+								) : null}
+							</View>
 						</TouchableOpacity>
 						<TouchableOpacity style={styles.menuTouchableOpacity} onPress={() => setStep(3)}>
-							<Text style={step == 3 ? styles.menuTextSelected : styles.menuText}>Recipes</Text>
+							<View style={styles.menuViewText}>
+								<Text style={step == 3 ? styles.menuTextSelected : styles.menuText}>Recipes</Text>
+								{step == 3 ? (
+									<>
+										<View style={styles.menuPearl}></View>
+										<View style={styles.menuNotch}></View>
+									</>
+								) : null}
+							</View>
 						</TouchableOpacity>
 					</View>
 				</View>

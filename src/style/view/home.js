@@ -37,18 +37,45 @@ export default StyleSheet.create({
 		flex: 1,
 	},
 
+	menuViewText: {
+		flexDirection: "column",
+		alignItems: "center",
+		justifyContent: "center",
+		transform: [{ rotate: "-90deg" }],
+	},
+
 	menuText: {
 		width: 150,
 		textAlign: "center",
-		transform: [{ rotate: "-90deg" }],
 		color: "#8080A5",
 	},
 
 	menuTextSelected: {
 		width: 150,
 		textAlign: "center",
-		transform: [{ rotate: "-90deg" }],
 		color: "#413A6C",
 		fontWeight: "700",
+	},
+
+	menuPearl: {
+		height: 6,
+		width: 6,
+		backgroundColor: "#5858FA",
+		position: "absolute",
+		top: 25,
+		borderRadius: 50,
+	},
+
+	menuNotch: {
+		overflow: "hidden",
+		transform: [{ rotate: "45deg" }],
+		height: 150,
+		width: 150,
+		backgroundColor: "red",
+		position: "absolute",
+		top: -115,
+		borderRadius: 25,
+		zIndex: -1,
+		backgroundColor: "#DCE6FA",
 	},
 });
