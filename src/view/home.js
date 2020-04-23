@@ -22,7 +22,7 @@ export default function Home() {
 					<View style={styles.menuButtonContainer}>
 						<TouchableOpacity style={styles.menuTouchableOpacity} onPress={() => setStep(1)}>
 							<View style={styles.menuViewText}>
-								<Text style={step == 1 ? styles.menuTextSelected : styles.menuText}>Proposal</Text>
+								<Text style={step == 1 ? styles.menuTextSelected : styles.menuText}>Suggestion</Text>
 								{step == 1 ? (
 									<>
 										<View style={styles.menuPearl}></View>
