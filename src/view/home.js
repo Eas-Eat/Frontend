@@ -59,7 +59,7 @@ export default function Home() {
 					</View>
 				</View>
 
-				<View style={{ flex: 6 }}>{step == 1 ? <Suggestions /> : <Text>Hello World</Text>}</View>
+				<View style={{ flex: 6, zIndex: -2 }}>{step == 1 ? <Suggestions /> : <Text>Hello World</Text>}</View>
 			</KeyboardAvoidingView>
 		);
 	};
