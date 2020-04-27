@@ -3,11 +3,11 @@ import { View, KeyboardAvoidingView, Text, TouchableOpacity } from "react-native
 import { Ionicons } from "@expo/vector-icons";
 
 import Suggestions from "./suggestions";
-import Ingrediants from "./ingrediants";
+import Ingrediants from "./ingredients";
 import styles from "../style/view/home";
 
 export default function Home() {
-	const [step, setStep] = useState(1);
+	const [step, setStep] = useState(2);
 
 	const router = () => {
 		if (step === 1) {
