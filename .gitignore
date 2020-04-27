@@ -12,3 +12,6 @@ web-report/
 /coverage/**
 # macOS
 .DS_Store
+
+#env
+environment.js
