@@ -59,7 +59,7 @@ export default StyleSheet.create({
 	},
 
 	cardSubTitle: {
-		color: "#AAAAAA",
+		color: "#545454",
 		fontFamily: "sans-serif-condensed",
 	},
 
@@ -79,7 +79,7 @@ export default StyleSheet.create({
 	},
 
 	cardFooterSubText: {
-		color: "#AAAAAA",
+		color: "#1A605B",
 		fontFamily: "sans-serif-condensed",
 		textAlignVertical: "bottom",
 	},
@@ -106,7 +106,6 @@ export default StyleSheet.create({
 	},
 
 	badgeText: {
-		color: "#AAAAAA",
 		fontFamily: "sans-serif-condensed",
 		marginTop: 4,
 	},
