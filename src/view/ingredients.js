@@ -17,6 +17,10 @@ export default function Ingredients() {
 		alert(JSON.stringify(res));
 	};
 
+	const removeIngredient = () => {
+		console.log("delete");
+	};
+
 	const title = () => {
 		return (
 			<View style={styles.contenaireTitle}>
@@ -31,7 +35,9 @@ export default function Ingredients() {
 			<View key={index} style={{ marginHorizontal: 32 }}>
 				<View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
 					<Text style={{ fontSize: 20, fontFamily: "sans-serif-condensed", marginLeft: 8 }}>{item}</Text>
-					<Ionicons name="md-close" size={28} color="red" />
+					<TouchableOpacity onPress={() => removeIngredient(index)}>
+						<Ionicons name="md-close" size={28} color="red" />
+					</TouchableOpacity>
 				</View>
 				<View style={{ height: 1, width: "100%", backgroundColor: "#DCE6FA", marginVertical: 8 }}></View>
 			</View>
