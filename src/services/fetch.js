@@ -29,6 +29,7 @@ export default {
 	recipeSummary: recipeID => request("GET", "/recipes/", `${recipeID}/summary`),
 	recipeEquipment: recipeID => request("GET", "/recipes/", `${recipeID}/equipmentWidget.json`),
 	recipeNutrition: recipeID => request("GET", "/recipes/", `${recipeID}/nutritionWidget.json`),
+	recipeInstructions: recipeID => request("GET", "/recipes/", `${recipeID}/analyzedInstructions?stepBreakdown=true`),
 
 	// Ingredients
 	listIngredients: name =>
