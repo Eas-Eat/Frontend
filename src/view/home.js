@@ -3,11 +3,21 @@ import { View, KeyboardAvoidingView, Text, TouchableOpacity } from "react-native
 import { Ionicons } from "@expo/vector-icons";
 
 import Suggestions from "./suggestions";
+import Ingrediants from "./ingrediants";
 import styles from "../style/view/home";
 
 export default function Home() {
 	const [step, setStep] = useState(1);
 
+	const router = () => {
+		if (step === 1) {
+			return <Suggestions />;
+		}
+
+		if (step === 2) {
+			return <Ingrediants />;
+		}
+	};
 	const render = () => {
 		return (
 			<KeyboardAvoidingView behavior="padding" enabled style={styles.keyboardAvoiding}>
@@ -59,7 +69,7 @@ export default function Home() {
 					</View>
 				</View>
 
-				<View style={{ flex: 6, zIndex: -2 }}>{step == 1 ? <Suggestions /> : <Text>Hello World</Text>}</View>
+				<View style={{ flex: 6, zIndex: -2 }}>{router()}</View>
 			</KeyboardAvoidingView>
 		);
 	};
