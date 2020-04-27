@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, KeyboardAvoidingView, Text, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
+import Suggestions from "./suggestions";
 import styles from "../style/view/home";
 
 export default function Home() {
@@ -22,7 +23,7 @@ export default function Home() {
 					<View style={styles.menuButtonContainer}>
 						<TouchableOpacity style={styles.menuTouchableOpacity} onPress={() => setStep(1)}>
 							<View style={styles.menuViewText}>
-								<Text style={step == 1 ? styles.menuTextSelected : styles.menuText}>Proposal</Text>
+								<Text style={step == 1 ? styles.menuTextSelected : styles.menuText}>Suggestions</Text>
 								{step == 1 ? (
 									<>
 										<View style={styles.menuPearl}></View>
@@ -58,9 +59,7 @@ export default function Home() {
 					</View>
 				</View>
 
-				<View style={{ flex: 6 }}>
-					<Text>Hello World</Text>
-				</View>
+				<View style={{ flex: 6, zIndex: -2 }}>{step == 1 ? <Suggestions /> : <Text>Hello World</Text>}</View>
 			</KeyboardAvoidingView>
 		);
 	};

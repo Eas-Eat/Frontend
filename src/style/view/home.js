@@ -53,14 +53,14 @@ export default StyleSheet.create({
 	menuTextSelected: {
 		width: 150,
 		textAlign: "center",
-		color: "#413A6C",
+		color: "#696995",
 		fontWeight: "700",
 	},
 
 	menuPearl: {
 		height: 6,
 		width: 6,
-		backgroundColor: "#5858FA",
+		backgroundColor: "#8080A5",
 		position: "absolute",
 		top: 25,
 		borderRadius: 50,
