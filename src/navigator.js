@@ -6,8 +6,6 @@ import { createStackNavigator } from "react-navigation-stack";
 import Login from "./view/login";
 import Register from "./view/register";
 import Forgot from "./view/forgot";
-import FindRecipes from "./component/findRecipes";
-import FindIngredient from "./component/findIngredient";
 
 const CreateStack = createStackNavigator(
 	{
@@ -29,22 +27,9 @@ const CreateStack = createStackNavigator(
 				header: null,
 			},
 		},
-		// This components are tests, remove these in release
-		FindRecipes: {
-			screen: FindRecipes,
-			navigationOptions: {
-				header: null,
-			},
-		},
-		FindIngredient: {
-			screen: FindIngredient,
-			navigationOptions: {
-				header: null,
-			},
-		},
 	},
 	{
-		initialRouteName: "FindIngredient",
+		initialRouteName: "Login",
 	}
 );
 
