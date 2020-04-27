@@ -7,14 +7,16 @@ import request from "../services/fetch";
 import styles from "../style/view/ingredients";
 
 export default function Ingredients() {
-	const [list, setList] = useState(["oeuf", "salade"]);
+	const [list, setList] = useState(["egg", "salad"]);
 	const [stateInput, setStateInput] = useState(false);
+	const [query, setQuery] = useState("");
+	const [ingredientSearch, setIngredientSearch] = useState("");
 
-	const ingredientSearch = useInput("");
-
-	const fetchIngredients = async () => {
-		const res = await request("GET", "food/ingredients/autocomplete", `?number=10&query=${ingredientSearch.value}`);
-		alert(JSON.stringify(res));
+	const fetchIngredients = async e => {
+		setIngredientSearch(e);
+		const res = await request.listIngredients(e);
+		setQuery(res);
+		console.log(JSON.stringify(res));
 	};
 
 	const removeIngredient = () => {
@@ -58,12 +60,35 @@ export default function Ingredients() {
 		);
 	};
 
+	const suggestions = () => {
+		let res = [];
+		query &&
+			query.forEach((item, index) => {
+				res.push(
+					<TouchableOpacity
+						key={index}
+						onPress={() => {
+							// Add to back server
+							setList([...list, item.name]);
+						}}
+					>
+						<Text>{item.name}</Text>
+					</TouchableOpacity>
+				);
+			});
+		return <View>{res}</View>;
+	};
+
 	const addIngredientInput = () => {
 		return (
-			<View style={{ marginHorizontal: 32, alignItems: "center" }}>
+			<View>
 				<Text>Search an ingredient: </Text>
-				<TextInput {...ingredientSearch} style={styles.searchInput} />
-				<Button onPress={fetchIngredients} title="Fetch ingredients" color="#841584" />
+				<TextInput
+					onChangeText={e => fetchIngredients(e)}
+					value={ingredientSearch}
+					style={{ borderWidth: 1, borderColor: "black", width: 100 }}
+				/>
+				{suggestions()}
 				<TouchableOpacity onPress={() => setStateInput(false)}>
 					<Ionicons name="md-close" size={28} color="red" />
 				</TouchableOpacity>
@@ -73,7 +98,8 @@ export default function Ingredients() {
 
 	const render = () => {
 		return (
-			<KeyboardAvoidingView behavior="padding" enabled style={styles.keyboardAvoiding}>
+			//<KeyboardAvoidingView behavior="padding" enabled style={styles.keyboardAvoiding}>
+			<>
 				{title()}
 				<View style={{ flex: 6 }}>
 					{list.map((item, index) => {
@@ -81,7 +107,8 @@ export default function Ingredients() {
 					})}
 					{stateInput ? addIngredientInput() : addIngredientText()}
 				</View>
-			</KeyboardAvoidingView>
+			</>
+			//</KeyboardAvoidingView>
 		);
 	};
 
