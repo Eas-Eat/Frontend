@@ -16,7 +16,6 @@ export default function Ingredients() {
 		setIngredientSearch(e);
 		const res = await request.listIngredients(e);
 		setQuery(res);
-		console.log(JSON.stringify(res));
 	};
 
 	const removeIngredient = () => {
