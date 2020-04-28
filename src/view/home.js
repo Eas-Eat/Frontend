@@ -4,6 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 import Suggestions from "./suggestions";
 import Ingrediants from "./ingredients";
+import Recipes from "./recipes";
 import styles from "../style/view/home";
 
 export default function Home() {
@@ -16,6 +17,10 @@ export default function Home() {
 
 		if (step === 2) {
 			return <Ingrediants />;
+		}
+
+		if (step === 3) {
+			return <Recipes />;
 		}
 	};
 	const render = () => {
