@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, KeyboardAvoidingView, Text, TextInput, Button, TouchableOpacity } from "react-native";
+import { View, ScrollView, Text, TextInput, Button, TouchableOpacity } from "react-native";
 import { Ionicons, MaterialCommunityIcons, Entypo, FontAwesome5 } from "@expo/vector-icons";
 
 import useInput from "../hooks/useInput";
@@ -23,6 +23,18 @@ export default function Ingredients() {
 		console.log("delete");
 	};
 
+	const onClose = () => {
+		setStateInput(false);
+		setIngredientSearch("");
+		setQuery("");
+	};
+
+	const onSelectedIngredient = item => {
+		setList([...list, item]);
+		setStateInput(false);
+		setIngredientSearch("");
+		setQuery("");
+	};
 	const title = () => {
 		return (
 			<View style={styles.contenaireTitle}>
@@ -65,15 +77,25 @@ export default function Ingredients() {
 		query &&
 			query.forEach((item, index) => {
 				res.push(
-					<TouchableOpacity
-						key={index}
-						onPress={() => {
-							// Add to back server
-							setList([...list, item.name]);
-						}}
-					>
-						<Text>{item.name}</Text>
-					</TouchableOpacity>
+					<>
+						<TouchableOpacity
+							style={{
+								paddingLeft: 16,
+								paddingVertical: 8,
+								justifyContent: "center",
+							}}
+							key={index}
+							onPress={() => {
+								// Add to back server
+								onSelectedIngredient(item.name);
+							}}
+						>
+							<Text style={{ fontSize: 16, fontFamily: "sans-serif-condensed" }}>{item.name}</Text>
+						</TouchableOpacity>
+						<View
+							style={{ height: 1, width: "100%", backgroundColor: "#DCE6FA", marginVertical: 0 }}
+						></View>
+					</>
 				);
 			});
 		return <View>{res}</View>;
@@ -81,25 +103,45 @@ export default function Ingredients() {
 
 	const addIngredientInput = () => {
 		return (
-			<View>
-				<Text>Search an ingredient: </Text>
-				<TextInput
-					onChangeText={e => fetchIngredients(e)}
-					value={ingredientSearch}
-					style={{ borderWidth: 1, borderColor: "black", width: 100 }}
-				/>
-				{suggestions()}
-				<TouchableOpacity onPress={() => setStateInput(false)}>
-					<Ionicons name="md-close" size={28} color="red" />
-				</TouchableOpacity>
+			<View style={{ marginHorizontal: 32 }}>
+				<View
+					style={{
+						flexDirection: "row",
+						alignItems: "center",
+						justifyContent: "space-between",
+					}}
+				>
+					<TextInput
+						onChangeText={e => fetchIngredients(e)}
+						value={ingredientSearch}
+						style={{ borderBottomWidth: 1, borderColor: "#8080A5", flex: 1, marginRight: 16 }}
+						placeholder="Your new ingredient"
+					/>
+					<TouchableOpacity onPress={() => onClose(false)}>
+						<Ionicons name="md-close" size={28} color="red" />
+					</TouchableOpacity>
+				</View>
+				{query ? (
+					<ScrollView
+						keyboardShouldPersistTaps="handle"
+						style={{
+							borderWidth: 0.5,
+							borderColor: "#8080A5",
+							borderTopWidth: 0,
+							marginRight: 32,
+							height: 250,
+						}}
+					>
+						{suggestions()}
+					</ScrollView>
+				) : null}
 			</View>
 		);
 	};
 
 	const render = () => {
 		return (
-			//<KeyboardAvoidingView behavior="padding" enabled style={styles.keyboardAvoiding}>
-			<>
+			<View style={styles.keyboardAvoiding}>
 				{title()}
 				<View style={{ flex: 6 }}>
 					{list.map((item, index) => {
@@ -107,8 +149,7 @@ export default function Ingredients() {
 					})}
 					{stateInput ? addIngredientInput() : addIngredientText()}
 				</View>
-			</>
-			//</KeyboardAvoidingView>
+			</View>
 		);
 	};
 

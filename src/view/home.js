@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, KeyboardAvoidingView, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import Suggestions from "./suggestions";
@@ -20,7 +20,7 @@ export default function Home() {
 	};
 	const render = () => {
 		return (
-			<KeyboardAvoidingView behavior="padding" enabled style={styles.keyboardAvoiding}>
+			<View style={styles.keyboardAvoiding}>
 				<View style={styles.menuContainer}>
 					<View style={styles.menuIconContainer}>
 						<View style={styles.menuIcon}>
@@ -70,7 +70,7 @@ export default function Home() {
 				</View>
 
 				<View style={{ flex: 6, zIndex: -2 }}>{router()}</View>
-			</KeyboardAvoidingView>
+			</View>
 		);
 	};
 
