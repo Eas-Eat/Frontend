@@ -46,10 +46,13 @@ const CreateStack = createStackNavigator(
 		},
 		Recipe: {
 			screen: Recipe,
+			navigationOptions: {
+				header: null,
+			},
 		},
 	},
 	{
-		initialRouteName: "Home",
+		initialRouteName: "Recipe",
 	}
 );
 

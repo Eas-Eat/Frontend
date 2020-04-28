@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
 	keyboardAvoiding: {
-		backgroundColor: "#FAFAFA",
+		backgroundColor: "#DCE6FA",
 		flex: 1,
 		flexDirection: "column",
 	},
