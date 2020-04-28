@@ -7,8 +7,8 @@ import Ingrediants from "./ingredients";
 import Recipes from "./recipes";
 import styles from "../style/view/home";
 
-export default function Home() {
-	const [step, setStep] = useState(2);
+export default function Home({ navigation }) {
+	const [step, setStep] = useState(1);
 
 	const router = () => {
 		if (step === 1) {
@@ -20,7 +20,7 @@ export default function Home() {
 		}
 
 		if (step === 3) {
-			return <Recipes />;
+			return <Recipes navigation={navigation} />;
 		}
 	};
 	const render = () => {
