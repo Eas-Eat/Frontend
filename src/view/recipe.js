@@ -143,46 +143,17 @@ const data = [
 export default function Recipe({ navigation }) {
 	const header = () => {
 		return (
-			<View
-				style={{
-					flex: 1,
-					flexDirection: "row",
-					justifyContent: "space-between",
-				}}
-			>
+			<View style={styles.headerContainer}>
 				<View>
-					<TouchableOpacity
-						style={{
-							position: "relative",
-							top: 30,
-							left: 16,
-							height: 50,
-							width: 50,
-							justifyContent: "center",
-							alignItems: "center",
-						}}
-						onPress={() => navigation.goBack()}
-					>
+					<TouchableOpacity style={styles.headerTouchable} onPress={() => navigation.goBack()}>
 						<Ionicons name="ios-arrow-round-back" size={42} color="#696995" />
 					</TouchableOpacity>
-					<View style={{ position: "relative", top: 100, marginLeft: 26 }}>
-						<Text style={{ fontSize: 25, fontWeight: "bold", fontFamily: "sans-serif-condensed" }}>
-							Veggie Burger
-						</Text>
-						<Text style={{ color: "#545454", fontFamily: "sans-serif-condensed" }}>Spicy peanut sauce</Text>
+					<View style={styles.headerContainerTitle}>
+						<Text style={styles.headerTitle}>Veggie Burger</Text>
+						<Text style={styles.headerSubTitle}>Spicy peanut sauce</Text>
 					</View>
 				</View>
-				<Image
-					style={{
-						height: 275,
-						width: 275,
-						borderRadius: 1000,
-						position: "relative",
-						top: -55,
-						right: 0,
-					}}
-					source={require("../assets/burger.jpeg")}
-				/>
+				<Image style={styles.headerImg} source={require("../assets/burger.jpeg")} />
 			</View>
 		);
 	};
@@ -190,15 +161,12 @@ export default function Recipe({ navigation }) {
 	const ingredientsList = step => {
 		return (
 			<View style={{ marginTop: 8 }}>
-				<Text style={{ color: "#545454", fontFamily: "sans-serif-condensed" }}>Ingredients :</Text>
+				<Text style={styles.headerSubTitle}>Ingredients :</Text>
 				{step.ingredients.map((ingredient, index) => {
 					return (
-						<View
-							key={index}
-							style={{ flexDirection: "row", marginVertical: 4, marginTop: 12, alignItems: "center" }}
-						>
+						<View key={index} style={styles.listImgContainer}>
 							<Image
-								style={{ height: 60, width: 60, marginRight: 16, borderRadius: 50 }}
+								style={styles.listImg}
 								source={{
 									uri: `https://spoonacular.com/cdn/ingredients_100x100/${ingredient.image}`,
 								}}
@@ -213,32 +181,14 @@ export default function Recipe({ navigation }) {
 
 	const recipeInstruction = () => {
 		return (
-			<View
-				style={{
-					flex: 3,
-					backgroundColor: "#FAFAFA",
-					borderTopLeftRadius: 40,
-					borderTopRightRadius: 40,
-					position: "relative",
-					top: 30,
-				}}
-			>
-				<ScrollView
-					style={{
-						backgroundColor: "#FAFAFA",
-						borderTopLeftRadius: 40,
-						borderTopRightRadius: 40,
-						flex: 1,
-					}}
-				>
+			<View style={styles.recipeContainer}>
+				<ScrollView style={styles.recipeScrollview}>
 					{data[0].steps.map((step, index) => {
 						return (
-							<View key={index} style={{ flex: 1, marginHorizontal: 24, marginTop: 16 }}>
-								<Text style={{ fontSize: 24, fontWeight: "bold", color: "#413A6C" }}>
-									Step {step.number}
-								</Text>
+							<View key={index} style={styles.recipeBlock}>
+								<Text style={styles.recipeStep}>Step {step.number}</Text>
 								{ingredientsList(step)}
-								<Text style={{ marginTop: 32, textAlign: "justify" }}>{step.step}</Text>
+								<Text style={styles.recipeParaph}>{step.step}</Text>
 							</View>
 						);
 					})}
