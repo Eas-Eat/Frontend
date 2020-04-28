@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import { Ionicons, MaterialCommunityIcons, Entypo, FontAwesome5 } from "@expo/vector-icons";
 
 import styles from "../style/view/recipes";
 
-export default function Recipes() {
+export default function Recipes({ navigation }) {
 	const [randomNumber, setRandomNumber] = useState();
 
 	useEffect(() => {
@@ -13,6 +13,10 @@ export default function Recipes() {
 
 	const getRandomNumber = () => {
 		setRandomNumber(Math.floor(Math.random() * 5) + 1);
+	};
+
+	const onRecipe = () => {
+		navigation.navigate("Recipe");
 	};
 
 	const title = (firstHalf, secondHalf) => {
@@ -48,7 +52,7 @@ export default function Recipes() {
 
 	const cardRecipe = () => {
 		return (
-			<View style={styles.containerCard}>
+			<TouchableOpacity onPress={() => onRecipe()} style={styles.containerCard}>
 				<View style={styles.subContainerCard}>
 					<Image style={styles.image} source={require("../assets/burger.jpeg")} />
 					<View style={styles.cardContainerTitle}>
@@ -60,7 +64,7 @@ export default function Recipes() {
 						<Text style={styles.cardFooterSubText}>kcal</Text>
 					</View>
 				</View>
-			</View>
+			</TouchableOpacity>
 		);
 	};
 
