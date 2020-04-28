@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, KeyboardAvoidingView, Text, Image } from "react-native";
+import { View, Text, Image } from "react-native";
 import { Ionicons, MaterialCommunityIcons, Entypo, FontAwesome5 } from "@expo/vector-icons";
 
 import styles from "../style/view/suggestions";
@@ -96,11 +96,11 @@ export default function Suggestions() {
 	};
 	const render = () => {
 		return (
-			<KeyboardAvoidingView behavior="padding" enabled style={styles.keyboardAvoiding}>
+			<View style={styles.keyboardAvoiding}>
 				{displaySentence()}
 				{categoryBar()}
 				{cardRecipe()}
-			</KeyboardAvoidingView>
+			</View>
 		);
 	};
 

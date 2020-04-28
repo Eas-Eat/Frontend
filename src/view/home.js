@@ -1,16 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { View, KeyboardAvoidingView, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import Suggestions from "./suggestions";
+import Ingrediants from "./ingredients";
 import styles from "../style/view/home";
 
 export default function Home() {
-	const [step, setStep] = useState(1);
+	const [step, setStep] = useState(2);
 
+	const router = () => {
+		if (step === 1) {
+			return <Suggestions />;
+		}
+
+		if (step === 2) {
+			return <Ingrediants />;
+		}
+	};
 	const render = () => {
 		return (
-			<KeyboardAvoidingView behavior="padding" enabled style={styles.keyboardAvoiding}>
+			<View style={styles.keyboardAvoiding}>
 				<View style={styles.menuContainer}>
 					<View style={styles.menuIconContainer}>
 						<View style={styles.menuIcon}>
@@ -59,8 +69,8 @@ export default function Home() {
 					</View>
 				</View>
 
-				<View style={{ flex: 6, zIndex: -2 }}>{step == 1 ? <Suggestions /> : <Text>Hello World</Text>}</View>
-			</KeyboardAvoidingView>
+				<View style={{ flex: 6, zIndex: -2 }}>{router()}</View>
+			</View>
 		);
 	};
 
