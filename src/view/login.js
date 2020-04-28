@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, KeyboardAvoidingView, TextInput, Text, TouchableOpacity, ScrollView } from "react-native";
+import { View, TextInput, Text, TouchableOpacity, ScrollView } from "react-native";
 import { Spinner } from "native-base";
 
 import useInput from "../hooks/useInput";
@@ -24,7 +24,7 @@ export default function Login({ navigation }) {
 
 	const render = () => {
 		return (
-			<KeyboardAvoidingView behavior="padding" enabled style={styles.keyboardAvoiding}>
+			<View style={styles.keyboardAvoiding}>
 				<ScrollView>
 					<View style={styles.header}>
 						<Text style={styles.textHeader}>Log in to your</Text>
@@ -70,7 +70,7 @@ export default function Login({ navigation }) {
 						<Text style={styles.footerButton}>Sign up</Text>
 					</TouchableOpacity>
 				</View>
-			</KeyboardAvoidingView>
+			</View>
 		);
 	};
 

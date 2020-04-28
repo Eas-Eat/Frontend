@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, KeyboardAvoidingView, TextInput, Text, TouchableOpacity, ScrollView } from "react-native";
+import { View, TextInput, Text, TouchableOpacity, ScrollView } from "react-native";
 import { Spinner } from "native-base";
 
 import useInput from "../hooks/useInput";
@@ -15,7 +15,7 @@ export default function Forgot() {
 
 	const render = () => {
 		return (
-			<KeyboardAvoidingView behavior="padding" enabled style={styles.keyboardAvoiding}>
+			<View style={styles.keyboardAvoiding}>
 				<ScrollView>
 					<View style={styles.header}>
 						<Text style={styles.textHeader}>Forgot password</Text>
@@ -39,7 +39,7 @@ export default function Forgot() {
 						)}
 					</View>
 				</ScrollView>
-			</KeyboardAvoidingView>
+			</View>
 		);
 	};
 
