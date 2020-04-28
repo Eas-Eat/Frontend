@@ -1,17 +1,25 @@
 import React, { useState } from "react";
+import { useMutation } from "@apollo/react-hooks";
 import { View, KeyboardAvoidingView, TextInput, Text, TouchableOpacity, ScrollView } from "react-native";
 import { Spinner } from "native-base";
 
+import { signin } from "../services/graphql";
 import useInput from "../hooks/useInput";
 import styles from "../style/view/login";
 
 export default function Login({ navigation }) {
-	const [loading, setLoading] = useState(false);
+	const [switchLoading, setSwitchLoading] = useState(false);
 	const email = useInput("");
 	const password = useInput("");
+	const [performLogin] = useMutation(signin, {
+		variables: { email: email.value, password: password.value },
+	});
 
-	const login = () => {
-		return null;
+	const login = async () => {
+		setSwitchLoading(true);
+		await performLogin();
+		setSwitchLoading(false);
+		navigation.navigate("Home");
 	};
 
 	const register = () => {
@@ -48,7 +56,7 @@ export default function Login({ navigation }) {
 								</View>
 							</TouchableOpacity>
 						</View>
-						{!loading ? (
+						{!switchLoading ? (
 							<TouchableOpacity onPress={() => login()}>
 								<View style={styles.loginView}>
 									<Text style={styles.loginText}>Log in</Text>

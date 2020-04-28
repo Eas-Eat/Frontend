@@ -45,7 +45,7 @@ const CreateStack = createStackNavigator(
 		},
 	},
 	{
-		initialRouteName: "Home",
+		initialRouteName: "Register",
 	}
 );
 
