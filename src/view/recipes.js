@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { View, Text, Image } from "react-native";
 import { Ionicons, MaterialCommunityIcons, Entypo, FontAwesome5 } from "@expo/vector-icons";
 
-import styles from "../style/view/suggestions";
+import styles from "../style/view/recipes";
 
-export default function Suggestions() {
+export default function Recipes() {
 	const [randomNumber, setRandomNumber] = useState();
 
 	useEffect(() => {
