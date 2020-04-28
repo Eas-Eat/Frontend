@@ -76,14 +76,13 @@ export default function Ingredients() {
 		query &&
 			query.forEach((item, index) => {
 				res.push(
-					<>
+					<View key={index}>
 						<TouchableOpacity
 							style={{
 								paddingLeft: 16,
 								paddingVertical: 8,
 								justifyContent: "center",
 							}}
-							key={index}
 							onPress={() => {
 								// Add to back server
 								onSelectedIngredient(item.name);
@@ -94,7 +93,7 @@ export default function Ingredients() {
 						<View
 							style={{ height: 1, width: "100%", backgroundColor: "#DCE6FA", marginVertical: 0 }}
 						></View>
-					</>
+					</View>
 				);
 			});
 		return <View>{res}</View>;
