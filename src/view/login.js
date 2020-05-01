@@ -34,7 +34,7 @@ export default function Login({ navigation }) {
 
 	const render = () => {
 		return (
-			<KeyboardAvoidingView behavior="padding" enabled style={styles.keyboardAvoiding}>
+			<View style={styles.keyboardAvoiding}>
 				<ScrollView>
 					<View style={styles.header}>
 						<Text style={styles.textHeader}>Log in to your</Text>
@@ -80,7 +80,7 @@ export default function Login({ navigation }) {
 						<Text style={styles.footerButton}>Sign up</Text>
 					</TouchableOpacity>
 				</View>
-			</KeyboardAvoidingView>
+			</View>
 		);
 	};
 

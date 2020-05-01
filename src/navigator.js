@@ -7,6 +7,7 @@ import Login from "./view/login";
 import Register from "./view/register";
 import Forgot from "./view/forgot";
 import Home from "./view/home";
+import Recipe from "./view/recipe";
 
 const CreateStack = createStackNavigator(
 	{
@@ -43,9 +44,15 @@ const CreateStack = createStackNavigator(
 				header: null,
 			},
 		},
+		Recipe: {
+			screen: Recipe,
+			navigationOptions: {
+				header: null,
+			},
+		},
 	},
 	{
-		initialRouteName: "Register",
+		initialRouteName: "Login",
 	}
 );
 

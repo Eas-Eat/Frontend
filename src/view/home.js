@@ -9,7 +9,7 @@ import styles from "../style/view/home";
 
 export default function Home({ navigation }) {
 	const { userId } = navigation.state.params;
-	const [step, setStep] = useState(2);
+	const [step, setStep] = useState(1);
 
 	const router = () => {
 		if (step === 1) {
@@ -21,7 +21,7 @@ export default function Home({ navigation }) {
 		}
 
 		if (step === 3) {
-			return <Recipes />;
+			return <Recipes navigation={navigation} />;
 		}
 	};
 	const render = () => {
