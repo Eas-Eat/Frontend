@@ -10,7 +10,7 @@ import styles from "../style/view/home";
 export default function Home({ navigation }) {
 	const { userId } = navigation.state.params;
 	const [step, setStep] = useState(1);
-	const [ingredients, setIngredients] = useState(["egg", "salad"]);
+	const [ingredients, setIngredients] = useState(["egg", "tomatoes"]);
 
 	const router = () => {
 		if (step === 1) {
