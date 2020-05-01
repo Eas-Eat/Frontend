@@ -16,10 +16,7 @@ export const signin = gql`
 
 export const addFood = gql`
 	mutation addFood($userId: String!, $foodId: String!) {
-		addFood(userId: $userId, foodId: $foodId) {
-			foodId
-			userId
-		}
+		addFood(userId: $userId, foodId: $foodId)
 	}
 `;
 

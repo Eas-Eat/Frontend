@@ -1,16 +1,29 @@
 import React, { useState, useEffect } from "react";
-import { View, ScrollView, Text, TextInput, Button, TouchableOpacity } from "react-native";
-import { Ionicons, MaterialCommunityIcons, Entypo, FontAwesome5 } from "@expo/vector-icons";
+import { useMutation } from "@apollo/react-hooks";
+import { View, ScrollView, Text, TextInput, TouchableOpacity } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
-import useInput from "../hooks/useInput";
+import { addFood } from "../services/graphql";
 import request from "../services/fetch";
 import styles from "../style/view/ingredients";
 
-export default function Ingredients() {
+export default function Ingredients({ userId }) {
 	const [list, setList] = useState(["egg", "salad"]);
 	const [stateInput, setStateInput] = useState(false);
 	const [query, setQuery] = useState("");
 	const [ingredientSearch, setIngredientSearch] = useState("");
+	const [foodId, setFoodId] = useState();
+	const [performAddInredient] = useMutation(addFood, {
+		variables: { userId, foodId },
+	});
+
+	useEffect(() => {
+		if (foodId) {
+			console.log("userId: ", userId, " - foodId: ", foodId);
+			// Back is not working yet
+			// performAddInredient();
+		}
+	}, [foodId]);
 
 	const fetchIngredients = async e => {
 		setIngredientSearch(e);
@@ -84,7 +97,7 @@ export default function Ingredients() {
 								justifyContent: "center",
 							}}
 							onPress={() => {
-								// Add to back server
+								setFoodId(`${item.id}`);
 								onSelectedIngredient(item.name);
 							}}
 						>

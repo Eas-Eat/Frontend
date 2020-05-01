@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import { View, KeyboardAvoidingView, TextInput, Text, TouchableOpacity, ScrollView } from "react-native";
 import { Spinner } from "native-base";
+import jwt_decode from "jwt-decode";
 
 import { signin } from "../services/graphql";
 import useInput from "../hooks/useInput";
@@ -17,9 +18,10 @@ export default function Login({ navigation }) {
 
 	const login = async () => {
 		setSwitchLoading(true);
-		await performLogin();
+		const user = await performLogin();
+		var decodedUser = jwt_decode(user.data.login);
 		setSwitchLoading(false);
-		navigation.navigate("Home");
+		navigation.navigate("Home", { userId: decodedUser.id });
 	};
 
 	const register = () => {

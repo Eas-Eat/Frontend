@@ -33,7 +33,11 @@ export default {
 
 	// Ingredients
 	listIngredients: name =>
-		request("GET", "/food/ingredients/autocomplete?number=10&intolerances=egg&query=", `${name}`),
+		request(
+			"GET",
+			"/food/ingredients/autocomplete?number=10&intolerances=egg&metaInformation=true&query=",
+			`${name}`
+		),
 
 	// Others
 	randomJoke: () => request("GET", "/food/jokes/random", ``),
