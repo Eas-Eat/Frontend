@@ -7,8 +7,7 @@ import { addFood } from "../services/graphql";
 import request from "../services/fetch";
 import styles from "../style/view/ingredients";
 
-export default function Ingredients({ userId }) {
-	const [list, setList] = useState(["egg", "salad"]);
+export default function Ingredients({ userId, ingredients, setIngredients }) {
 	const [stateInput, setStateInput] = useState(false);
 	const [query, setQuery] = useState("");
 	const [ingredientSearch, setIngredientSearch] = useState("");
@@ -19,8 +18,8 @@ export default function Ingredients({ userId }) {
 
 	useEffect(() => {
 		if (foodId) {
-			console.log("userId: ", userId, " - foodId: ", foodId);
 			// Back is not working yet
+			// console.log("userId: ", userId, " - foodId: ", foodId);
 			// performAddInredient();
 		}
 	}, [foodId]);
@@ -42,7 +41,7 @@ export default function Ingredients({ userId }) {
 	};
 
 	const onSelectedIngredient = item => {
-		setList([...list, item]);
+		setIngredients([...ingredients, item]);
 		setStateInput(false);
 		setIngredientSearch("");
 		setQuery("");
@@ -155,7 +154,7 @@ export default function Ingredients({ userId }) {
 			<View style={styles.keyboardAvoiding}>
 				{title()}
 				<View style={{ flex: 6 }}>
-					{list.map((item, index) => {
+					{ingredients.map((item, index) => {
 						return listIngredients(item, index);
 					})}
 					{stateInput ? addIngredientInput() : addIngredientText()}

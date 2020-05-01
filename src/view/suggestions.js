@@ -2,14 +2,22 @@ import React, { useState, useEffect } from "react";
 import { View, Text, Image } from "react-native";
 import { Ionicons, MaterialCommunityIcons, Entypo, FontAwesome5 } from "@expo/vector-icons";
 
+import fetch from "../services/fetch";
 import styles from "../style/view/suggestions";
 
 export default function Suggestions() {
 	const [randomNumber, setRandomNumber] = useState();
+	let randomRecipe;
 
 	useEffect(() => {
 		getRandomNumber();
+		getRandomRecipe();
 	}, []);
+
+	const getRandomRecipe = async () => {
+		randomRecipe = await fetch.randomRecipe();
+		// console.log(randomRecipe);
+	};
 
 	const getRandomNumber = () => {
 		setRandomNumber(Math.floor(Math.random() * 5) + 1);

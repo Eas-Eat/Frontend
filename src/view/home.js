@@ -3,13 +3,14 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import Suggestions from "./suggestions";
-import Ingrediants from "./ingredients";
+import Ingredients from "./ingredients";
 import Recipes from "./recipes";
 import styles from "../style/view/home";
 
 export default function Home({ navigation }) {
 	const { userId } = navigation.state.params;
 	const [step, setStep] = useState(1);
+	const [ingredients, setIngredients] = useState(["egg", "salad"]);
 
 	const router = () => {
 		if (step === 1) {
@@ -17,11 +18,11 @@ export default function Home({ navigation }) {
 		}
 
 		if (step === 2) {
-			return <Ingrediants userId={userId} />;
+			return <Ingredients userId={userId} ingredients={ingredients} setIngredients={setIngredients} />;
 		}
 
 		if (step === 3) {
-			return <Recipes navigation={navigation} />;
+			return <Recipes navigation={navigation} ingredients={ingredients} />;
 		}
 	};
 	const render = () => {
