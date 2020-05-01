@@ -141,6 +141,12 @@ const data = [
 	},
 ];
 export default function Recipe({ navigation }) {
+	const { recipe } = navigation.state.params;
+
+	useEffect(() => {
+		console.log(recipe);
+	}, []);
+
 	const header = () => {
 		return (
 			<View style={styles.headerContainer}>

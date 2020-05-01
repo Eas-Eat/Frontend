@@ -2,21 +2,34 @@ import React, { useState, useEffect } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { Ionicons, MaterialCommunityIcons, Entypo, FontAwesome5 } from "@expo/vector-icons";
 
+import fetch from "../services/fetch";
 import styles from "../style/view/recipes";
 
-export default function Recipes({ navigation }) {
+export default function Recipes({ navigation, ingredients }) {
 	const [randomNumber, setRandomNumber] = useState();
+	const [load, setLoad] = useState(false);
+	const [recipes, setRecipes] = useState(false);
 
 	useEffect(() => {
 		getRandomNumber();
+		getRecipes();
 	}, []);
+
+	const getRecipes = async () => {
+		setLoad(true);
+		const res = await fetch.listRecipes(ingredients);
+		setRecipes(res);
+		setLoad(false);
+	};
 
 	const getRandomNumber = () => {
 		setRandomNumber(Math.floor(Math.random() * 5) + 1);
 	};
 
 	const onRecipe = () => {
-		navigation.navigate("Recipe");
+		if (!load) {
+			navigation.navigate("Recipe", { recipe: recipes[0].id });
+		}
 	};
 
 	const title = (firstHalf, secondHalf) => {

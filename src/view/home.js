@@ -22,7 +22,7 @@ export default function Home({ navigation }) {
 		}
 
 		if (step === 3) {
-			return <Recipes navigation={navigation} />;
+			return <Recipes navigation={navigation} ingredients={ingredients} />;
 		}
 	};
 	const render = () => {
