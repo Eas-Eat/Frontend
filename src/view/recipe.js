@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
+import fetch from "../services/fetch";
 import styles from "../style/view/recipe";
 
 const data = [
@@ -142,10 +143,17 @@ const data = [
 ];
 export default function Recipe({ navigation }) {
 	const { recipe } = navigation.state.params;
+	let steps;
 
 	useEffect(() => {
 		console.log(recipe);
+		getSteps();
 	}, []);
+
+	const getSteps = async () => {
+		steps = await fetch.recipeInstructions(recipe);
+		console.log("Steps: ", steps);
+	};
 
 	const header = () => {
 		return (
