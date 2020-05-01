@@ -1,17 +1,27 @@
 import React, { useState } from "react";
-import { View, TextInput, Text, TouchableOpacity, ScrollView } from "react-native";
+import { useMutation } from "@apollo/react-hooks";
+import { View, KeyboardAvoidingView, TextInput, Text, TouchableOpacity, ScrollView } from "react-native";
 import { Spinner } from "native-base";
+import jwt_decode from "jwt-decode";
 
+import { signin } from "../services/graphql";
 import useInput from "../hooks/useInput";
 import styles from "../style/view/login";
 
 export default function Login({ navigation }) {
-	const [loading, setLoading] = useState(false);
+	const [switchLoading, setSwitchLoading] = useState(false);
 	const email = useInput("");
 	const password = useInput("");
+	const [performLogin] = useMutation(signin, {
+		variables: { email: email.value, password: password.value },
+	});
 
-	const login = () => {
-		return null;
+	const login = async () => {
+		setSwitchLoading(true);
+		const user = await performLogin();
+		var decodedUser = jwt_decode(user.data.login);
+		setSwitchLoading(false);
+		navigation.navigate("Home", { userId: decodedUser.id });
 	};
 
 	const register = () => {
@@ -48,7 +58,7 @@ export default function Login({ navigation }) {
 								</View>
 							</TouchableOpacity>
 						</View>
-						{!loading ? (
+						{!switchLoading ? (
 							<TouchableOpacity onPress={() => login()}>
 								<View style={styles.loginView}>
 									<Text style={styles.loginText}>Log in</Text>

@@ -52,7 +52,7 @@ const CreateStack = createStackNavigator(
 		},
 	},
 	{
-		initialRouteName: "Recipe",
+		initialRouteName: "Login",
 	}
 );
 

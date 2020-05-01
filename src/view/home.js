@@ -8,6 +8,7 @@ import Recipes from "./recipes";
 import styles from "../style/view/home";
 
 export default function Home({ navigation }) {
+	const { userId } = navigation.state.params;
 	const [step, setStep] = useState(1);
 
 	const router = () => {
@@ -16,7 +17,7 @@ export default function Home({ navigation }) {
 		}
 
 		if (step === 2) {
-			return <Ingrediants />;
+			return <Ingrediants userId={userId} />;
 		}
 
 		if (step === 3) {

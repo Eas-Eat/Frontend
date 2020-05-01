@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import RootNavigator from "./src/navigator";
 import SafeAreaView from "react-native-safe-area-view";
+import { ApolloProvider } from "react-apollo";
+import ApolloClient from "apollo-boost";
 import { Provider as PaperProvider } from "react-native-paper";
 import * as Font from "expo-font";
 
 export default function app() {
 	const [loading, setLoading] = useState(true);
+	const client = new ApolloClient({ uri: "http://easeat-development.herokuapp.com/" });
 
 	useEffect(() => {
 		componentWillMount();
@@ -21,11 +24,13 @@ export default function app() {
 
 	const render = () => {
 		return loading ? null : (
-			<PaperProvider>
-				<SafeAreaView style={{ flex: 1, backgroundColor: "#191919" }} forceInset={{ top: "always" }}>
-					<RootNavigator />
-				</SafeAreaView>
-			</PaperProvider>
+			<ApolloProvider client={client}>
+				<PaperProvider>
+					<SafeAreaView style={{ flex: 1, backgroundColor: "#191919" }} forceInset={{ top: "always" }}>
+						<RootNavigator />
+					</SafeAreaView>
+				</PaperProvider>
+			</ApolloProvider>
 		);
 	};
 

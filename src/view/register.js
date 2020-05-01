@@ -1,18 +1,26 @@
 import React, { useState } from "react";
-import { View, TextInput, Text, TouchableOpacity, ScrollView } from "react-native";
+import { useMutation } from "@apollo/react-hooks";
+import { View, KeyboardAvoidingView, TextInput, Text, TouchableOpacity, ScrollView } from "react-native";
 import { Spinner } from "native-base";
 
+import { signup } from "../services/graphql";
 import useInput from "../hooks/useInput";
 import styles from "../style/view/register";
 
 export default function Register({ navigation }) {
-	const [loading, setLoading] = useState(false);
+	const [switchLoading, setSwitchLoading] = useState(false);
 	const username = useInput("");
 	const email = useInput("");
 	const password = useInput("");
+	const [performRegister] = useMutation(signup, {
+		variables: { email: email.value, password: password.value, name: username.value },
+	});
 
-	const register = () => {
-		navigation.navigate("Login");
+	const register = async () => {
+		setSwitchLoading(true);
+		await performRegister();
+		setSwitchLoading(false);
+		navigation.navigate("Home");
 	};
 
 	const login = () => {
@@ -33,7 +41,7 @@ export default function Register({ navigation }) {
 						<TextInput placeholder="Email" style={styles.input} {...email} />
 						<TextInput placeholder="Password" style={styles.input} {...password} />
 
-						{!loading ? (
+						{!switchLoading ? (
 							<TouchableOpacity onPress={() => register()}>
 								<View style={styles.signupView}>
 									<Text style={styles.signupText}>Sign up</Text>
