@@ -34,7 +34,6 @@ export default function Ingredients({ userId, ingredients, setIngredients }) {
 	const removeIngredient = item => {
 		const test = ingredients;
 		test.pop();
-		console.log(test);
 		setIngredients(test);
 		setState({});
 	};
