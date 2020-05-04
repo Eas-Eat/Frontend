@@ -12,6 +12,7 @@ export default function Ingredients({ userId, ingredients, setIngredients }) {
 	const [query, setQuery] = useState("");
 	const [ingredientSearch, setIngredientSearch] = useState("");
 	const [foodId, setFoodId] = useState();
+	const [, setState] = useState();
 	const [performAddInredient] = useMutation(addFood, {
 		variables: { userId, foodId },
 	});
@@ -30,8 +31,12 @@ export default function Ingredients({ userId, ingredients, setIngredients }) {
 		setQuery(res);
 	};
 
-	const removeIngredient = () => {
-		console.log("delete");
+	const removeIngredient = item => {
+		const test = ingredients;
+		test.pop();
+		console.log(test);
+		setIngredients(test);
+		setState({});
 	};
 
 	const onClose = () => {
@@ -60,7 +65,7 @@ export default function Ingredients({ userId, ingredients, setIngredients }) {
 			<View key={index} style={{ marginHorizontal: 32 }}>
 				<View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
 					<Text style={{ fontSize: 20, fontFamily: "sans-serif-condensed", marginLeft: 8 }}>{item}</Text>
-					<TouchableOpacity onPress={() => removeIngredient(index)}>
+					<TouchableOpacity onPress={() => removeIngredient(item)}>
 						<Ionicons name="md-close" size={28} color="red" />
 					</TouchableOpacity>
 				</View>

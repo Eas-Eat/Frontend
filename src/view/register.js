@@ -39,7 +39,7 @@ export default function Register({ navigation }) {
 					<View style={styles.form}>
 						<TextInput placeholder="Username" style={styles.input} {...username} />
 						<TextInput placeholder="Email" style={styles.input} {...email} />
-						<TextInput placeholder="Password" style={styles.input} {...password} />
+						<TextInput secureTextEntry={true} placeholder="Password" style={styles.input} {...password} />
 
 						{!switchLoading ? (
 							<TouchableOpacity onPress={() => register()}>

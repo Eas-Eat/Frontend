@@ -46,7 +46,12 @@ export default function Login({ navigation }) {
 
 						<View style={styles.formPassword}>
 							<View style={{ flex: 4 }}>
-								<TextInput placeholder="Password" style={styles.passwordText} {...password} />
+								<TextInput
+									secureTextEntry={true}
+									placeholder="Password"
+									style={styles.passwordText}
+									{...password}
+								/>
 							</View>
 							<TouchableOpacity
 								style={styles.forgotTouchable}
