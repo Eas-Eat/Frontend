@@ -30,7 +30,7 @@ export default {
 	recipeEquipment: recipeID => request("GET", "/recipes/", `${recipeID}/equipmentWidget.json`),
 	recipeNutrition: recipeID => request("GET", "/recipes/", `${recipeID}/nutritionWidget.json`),
 	recipeInstructions: recipeID => request("GET", "/recipes/", `${recipeID}/analyzedInstructions?stepBreakdown=true`),
-	randomRecipe: () => request("GET", "/recipes/", `random?number=1`),
+	randomRecipe: () => request("GET", "/recipes/", `random?number=5`),
 
 	// Ingredients
 	listIngredients: name =>

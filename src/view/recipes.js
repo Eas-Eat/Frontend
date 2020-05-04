@@ -1,26 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Image, TouchableOpacity, FlatList } from "react-native";
+import { View, Text, Image, FlatList, TouchableOpacity } from "react-native";
 import { Ionicons, MaterialCommunityIcons, Entypo, FontAwesome5 } from "@expo/vector-icons";
 
 import fetch from "../services/fetch";
-import styles from "../style/view/recipes";
+import styles from "../style/view/suggestions";
 
 export default function Recipes({ navigation, ingredients }) {
 	const [randomNumber, setRandomNumber] = useState();
+	const [randomRecipes, setRandomRecipes] = useState(null);
 	const [load, setLoad] = useState(false);
-	const [recipes, setRecipes] = useState(false);
 
 	useEffect(() => {
 		getRandomNumber();
-		getRecipes();
+		getRandomRecipe();
 	}, []);
 
-	const getRecipes = async () => {
-		setLoad(true);
-		const res = await fetch.listRecipes(ingredients);
-		//console.log(res);
-		setRecipes(res);
-		setLoad(false);
+	const getRandomRecipe = async () => {
+		const res = await fetch.randomRecipe();
+		setRandomRecipes(res);
+		console.log(res);
 	};
 
 	const getRandomNumber = () => {
@@ -122,10 +120,10 @@ export default function Recipes({ navigation, ingredients }) {
 			<View style={styles.keyboardAvoiding}>
 				{displaySentence()}
 				{categoryBar()}
-				{recipes ? (
+				{randomRecipes ? (
 					<FlatList
 						style={{ flex: 1, marginTop: 4 }}
-						data={recipes}
+						data={randomRecipes.recipes}
 						renderItem={({ item }) => {
 							return cardRecipe(item);
 						}}

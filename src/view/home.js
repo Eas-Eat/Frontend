@@ -14,7 +14,7 @@ export default function Home({ navigation }) {
 
 	const router = () => {
 		if (step === 1) {
-			return <Suggestions />;
+			return <Suggestions navigation={navigation} ingredients={ingredients} />;
 		}
 
 		if (step === 2) {
