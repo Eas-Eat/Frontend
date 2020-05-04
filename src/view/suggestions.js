@@ -125,7 +125,7 @@ export default function Suggestions({ navigation, ingredients }) {
 				{categoryBar()}
 				{recipes ? (
 					<FlatList
-						style={{ height: 500, marginLeft: 32 }}
+						style={{ height: 425, marginLeft: 32 }}
 						data={recipes}
 						renderItem={({ item }) => {
 							return cardRecipe(item);

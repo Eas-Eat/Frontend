@@ -121,7 +121,7 @@ export default function Recipes({ navigation, ingredients }) {
 				{categoryBar()}
 				{randomRecipes ? (
 					<FlatList
-						style={{ height: 500, marginLeft: 32 }}
+						style={{ height: 425, marginLeft: 32 }}
 						data={randomRecipes.recipes}
 						renderItem={({ item }) => {
 							return cardRecipe(item);
