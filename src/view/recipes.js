@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity, FlatList } from "react-native";
 import { Ionicons, MaterialCommunityIcons, Entypo, FontAwesome5 } from "@expo/vector-icons";
 
 import fetch from "../services/fetch";
@@ -18,7 +18,7 @@ export default function Recipes({ navigation, ingredients }) {
 	const getRecipes = async () => {
 		setLoad(true);
 		const res = await fetch.listRecipes(ingredients);
-		console.log(res);
+		//console.log(res);
 		setRecipes(res);
 		setLoad(false);
 	};
@@ -27,9 +27,9 @@ export default function Recipes({ navigation, ingredients }) {
 		setRandomNumber(Math.floor(Math.random() * 5) + 1);
 	};
 
-	const onRecipe = () => {
+	const onRecipe = (id, title) => {
 		if (!load) {
-			navigation.navigate("Recipe", { recipe: recipes[0].id });
+			navigation.navigate("Recipe", { recipe: id, title: title });
 		}
 	};
 
@@ -64,18 +64,23 @@ export default function Recipes({ navigation, ingredients }) {
 		}
 	};
 
-	const cardRecipe = () => {
+	const cardRecipe = item => {
 		return (
-			<TouchableOpacity onPress={() => onRecipe()} style={styles.containerCard}>
+			<TouchableOpacity onPress={() => onRecipe(item.id, item.title)} style={styles.containerCard}>
 				<View style={styles.subContainerCard}>
-					<Image style={styles.image} source={require("../assets/burger.jpeg")} />
+					<Image
+						style={styles.image}
+						source={{
+							uri: item.image,
+						}}
+					/>
 					<View style={styles.cardContainerTitle}>
-						<Text style={styles.cardTitle}>Veggie Burger</Text>
-						<Text style={styles.cardSubTitle}>Spicy peanut sauce</Text>
+						<Text style={styles.cardTitle}>{item.title}</Text>
+						<Text style={styles.cardSubTitle}>{item.usedIngredientCount} ingredients</Text>
 					</View>
 					<View style={styles.cardFooter}>
-						<Text style={styles.cardFooterText}>420</Text>
-						<Text style={styles.cardFooterSubText}>kcal</Text>
+						<Text style={styles.cardFooterText}>{item.likes}</Text>
+						<Text style={styles.cardFooterSubText}>likes</Text>
 					</View>
 				</View>
 			</TouchableOpacity>
@@ -117,7 +122,25 @@ export default function Recipes({ navigation, ingredients }) {
 			<View style={styles.keyboardAvoiding}>
 				{displaySentence()}
 				{categoryBar()}
-				{cardRecipe()}
+				{recipes ? (
+					<FlatList
+						style={{ flex: 1, marginTop: 4 }}
+						data={recipes}
+						renderItem={({ item }) => {
+							return cardRecipe(item);
+						}}
+						keyExtractor={item => `${item.id}`}
+						removeClippedSubviews={true}
+						initialNumToRender={2}
+						maxToRenderPerBatch={1}
+						updateCellsBatchingPeriod={50}
+						windowSize={7}
+						showsHorizontalScrollIndicator={false}
+						horizontal
+					/>
+				) : (
+					<Text>Loading...</Text>
+				)}
 			</View>
 		);
 	};

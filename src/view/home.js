@@ -31,10 +31,10 @@ export default function Home({ navigation }) {
 				<View style={styles.menuContainer}>
 					<View style={styles.menuIconContainer}>
 						<View style={styles.menuIcon}>
-							<Ionicons name="md-menu" size={24} color="#8080A5" />
+							{/* <Ionicons name="md-menu" size={24} color="#8080A5" /> */}
 						</View>
 						<View style={styles.menuIcon}>
-							<Ionicons name="md-search" size={24} color="#8080A5" />
+							{/* <Ionicons name="md-search" size={24} color="#8080A5" /> */}
 						</View>
 					</View>
 					<View style={styles.menuButtonContainer}>

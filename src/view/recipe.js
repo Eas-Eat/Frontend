@@ -6,7 +6,7 @@ import fetch from "../services/fetch";
 import styles from "../style/view/recipe";
 
 export default function Recipe({ navigation }) {
-	const { recipe } = navigation.state.params;
+	const { recipe, title } = navigation.state.params;
 	const [steps, setSteps] = useState();
 
 	useEffect(() => {
@@ -26,8 +26,7 @@ export default function Recipe({ navigation }) {
 						<Ionicons name="ios-arrow-round-back" size={42} color="#696995" />
 					</TouchableOpacity>
 					<View style={styles.headerContainerTitle}>
-						<Text style={styles.headerTitle}>Veggie Burger</Text>
-						<Text style={styles.headerSubTitle}>Spicy peanut sauce</Text>
+						<Text style={styles.headerTitle}>{title}</Text>
 					</View>
 				</View>
 				<Image style={styles.headerImg} source={require("../assets/burger.jpeg")} />
