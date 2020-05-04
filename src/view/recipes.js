@@ -18,7 +18,7 @@ export default function Recipes({ navigation, ingredients }) {
 	const getRecipes = async () => {
 		setLoad(true);
 		const res = await fetch.listRecipes(ingredients);
-		// console.log(res);
+		console.log(res);
 		setRecipes(res);
 		setLoad(false);
 	};
