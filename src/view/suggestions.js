@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Image, TouchableOpacity, FlatList } from "react-native";
+import { View, Text, Image, TouchableOpacity, FlatList, ActivityIndicator } from "react-native";
 import { Ionicons, MaterialCommunityIcons, Entypo, FontAwesome5 } from "@expo/vector-icons";
 
 import fetch from "../services/fetch";
@@ -18,7 +18,6 @@ export default function Suggestions({ navigation, ingredients }) {
 	const getRecipes = async () => {
 		setLoad(true);
 		const res = await fetch.listRecipes(ingredients);
-		//console.log(res);
 		setRecipes(res);
 		setLoad(false);
 	};
@@ -27,9 +26,9 @@ export default function Suggestions({ navigation, ingredients }) {
 		setRandomNumber(Math.floor(Math.random() * 5) + 1);
 	};
 
-	const onRecipe = (id, title) => {
+	const onRecipe = (id, title, image) => {
 		if (!load) {
-			navigation.navigate("Recipe", { recipe: id, title: title });
+			navigation.navigate("Recipe", { recipe: id, title: title, image: image });
 		}
 	};
 
@@ -66,7 +65,7 @@ export default function Suggestions({ navigation, ingredients }) {
 
 	const cardRecipe = item => {
 		return (
-			<TouchableOpacity onPress={() => onRecipe(item.id, item.title)} style={styles.containerCard}>
+			<TouchableOpacity onPress={() => onRecipe(item.id, item.title, item.image)} style={styles.containerCard}>
 				<View style={styles.subContainerCard}>
 					<Image
 						style={styles.image}
@@ -76,7 +75,9 @@ export default function Suggestions({ navigation, ingredients }) {
 					/>
 					<View style={styles.cardContainerTitle}>
 						<Text style={styles.cardTitle}>{item.title}</Text>
-						<Text style={styles.cardSubTitle}>{item.usedIngredientCount} ingredients</Text>
+						<Text style={styles.cardSubTitle}>
+							{item.usedIngredientCount + item.missedIngredientCount} ingredients
+						</Text>
 					</View>
 					<View style={styles.cardFooter}>
 						<Text style={styles.cardFooterText}>{item.likes}</Text>
@@ -124,7 +125,7 @@ export default function Suggestions({ navigation, ingredients }) {
 				{categoryBar()}
 				{recipes ? (
 					<FlatList
-						style={{ flex: 1, marginTop: 4 }}
+						style={{ height: 500, marginLeft: 32 }}
 						data={recipes}
 						renderItem={({ item }) => {
 							return cardRecipe(item);
@@ -139,7 +140,9 @@ export default function Suggestions({ navigation, ingredients }) {
 						horizontal
 					/>
 				) : (
-					<Text>Loading...</Text>
+					<View style={{ flex: 6, justifyContent: "center", alignItems: "center" }}>
+						<ActivityIndicator size="large" color="#5858FA" />
+					</View>
 				)}
 			</View>
 		);

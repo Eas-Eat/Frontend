@@ -6,7 +6,7 @@ import fetch from "../services/fetch";
 import styles from "../style/view/recipe";
 
 export default function Recipe({ navigation }) {
-	const { recipe, title } = navigation.state.params;
+	const { recipe, title, image } = navigation.state.params;
 	const [steps, setSteps] = useState();
 
 	useEffect(() => {
@@ -29,7 +29,12 @@ export default function Recipe({ navigation }) {
 						<Text style={styles.headerTitle}>{title}</Text>
 					</View>
 				</View>
-				<Image style={styles.headerImg} source={require("../assets/burger.jpeg")} />
+				<Image
+					style={styles.headerImg}
+					source={{
+						uri: image,
+					}}
+				/>
 			</View>
 		);
 	};

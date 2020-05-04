@@ -31,6 +31,7 @@ export default StyleSheet.create({
 		flex: 6,
 		justifyContent: "center",
 		alignItems: "center",
+		marginRight: 16,
 	},
 
 	subContainerCard: {

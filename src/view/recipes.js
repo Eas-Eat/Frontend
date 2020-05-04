@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Image, FlatList, TouchableOpacity } from "react-native";
+import { View, Text, Image, FlatList, TouchableOpacity, ActivityIndicator } from "react-native";
 import { Ionicons, MaterialCommunityIcons, Entypo, FontAwesome5 } from "@expo/vector-icons";
 
 import fetch from "../services/fetch";
-import styles from "../style/view/suggestions";
+import styles from "../style/view/recipes";
 
 export default function Recipes({ navigation, ingredients }) {
 	const [randomNumber, setRandomNumber] = useState();
@@ -18,16 +18,15 @@ export default function Recipes({ navigation, ingredients }) {
 	const getRandomRecipe = async () => {
 		const res = await fetch.randomRecipe();
 		setRandomRecipes(res);
-		console.log(res);
 	};
 
 	const getRandomNumber = () => {
 		setRandomNumber(Math.floor(Math.random() * 5) + 1);
 	};
 
-	const onRecipe = (id, title) => {
+	const onRecipe = (id, title, image) => {
 		if (!load) {
-			navigation.navigate("Recipe", { recipe: id, title: title });
+			navigation.navigate("Recipe", { recipe: id, title: title, image: image });
 		}
 	};
 
@@ -64,7 +63,7 @@ export default function Recipes({ navigation, ingredients }) {
 
 	const cardRecipe = item => {
 		return (
-			<TouchableOpacity onPress={() => onRecipe(item.id, item.title)} style={styles.containerCard}>
+			<TouchableOpacity onPress={() => onRecipe(item.id, item.title, item.image)} style={styles.containerCard}>
 				<View style={styles.subContainerCard}>
 					<Image
 						style={styles.image}
@@ -122,7 +121,7 @@ export default function Recipes({ navigation, ingredients }) {
 				{categoryBar()}
 				{randomRecipes ? (
 					<FlatList
-						style={{ flex: 1, marginTop: 4 }}
+						style={{ height: 500, marginLeft: 32 }}
 						data={randomRecipes.recipes}
 						renderItem={({ item }) => {
 							return cardRecipe(item);
@@ -137,7 +136,9 @@ export default function Recipes({ navigation, ingredients }) {
 						horizontal
 					/>
 				) : (
-					<Text>Loading...</Text>
+					<View style={{ flex: 6, justifyContent: "center", alignItems: "center" }}>
+						<ActivityIndicator size="large" color="#5858FA" />
+					</View>
 				)}
 			</View>
 		);

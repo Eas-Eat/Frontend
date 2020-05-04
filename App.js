@@ -6,6 +6,8 @@ import ApolloClient from "apollo-boost";
 import { Provider as PaperProvider } from "react-native-paper";
 import * as Font from "expo-font";
 
+console.disableYellowBox = true;
+
 export default function app() {
 	const [loading, setLoading] = useState(true);
 	const client = new ApolloClient({ uri: "http://easeat-development.herokuapp.com/" });

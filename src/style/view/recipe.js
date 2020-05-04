@@ -27,6 +27,7 @@ export default StyleSheet.create({
 		position: "relative",
 		top: 100,
 		marginLeft: 26,
+		width: 200,
 	},
 
 	headerTitle: {
