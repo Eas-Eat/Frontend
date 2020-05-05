@@ -36,3 +36,47 @@ export const clearInventory = gql`
 		}
 	}
 `;
+
+export const getUserById = gql`
+	query getUserById($id: string) {
+		getUserById(id: $id) {
+			name
+			email
+		}
+	}
+`;
+
+export const getAllCuisines = gql`
+	query {
+		getAllCuisines {
+			type
+			svgName
+		}
+	}
+`;
+
+export const getIngredients = gql`
+	query {
+		getIngredients {
+			foodId
+		}
+	}
+`;
+
+export const UpdateUser = gql`
+	mutation updateUser($name: String!, $email: String!) {
+		updateUser(name: $name, email: $email) {
+			email
+			name
+		}
+	}
+`;
+
+export const deleteUser = gql`
+	mutation deleteUser {
+		deleteUser {
+			email
+			name
+		}
+	}
+`;
